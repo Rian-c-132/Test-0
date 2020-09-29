@@ -3,7 +3,8 @@ from discord.ext import commands
 import random
 
 client = commands.Bot(command_prefix = '.')
-token = "NzU5ODAxNzI0OTE4NjkzOTA5.X3Cyfw.5CHdmELjNbwDhpi6qtXybmQ8Ce0"
+token = ""
+
 @client.event
 async def on_ready():
 	print("Ready!")
@@ -15,6 +16,15 @@ async def ping(ctx):
 @client.command()
 async def clear(ctx, amount = 5):
 	await ctx.channel.purge(limit = amount)
+
+@client.command()
+async def displayembed(ctx):
+	embed = discord.Embed(
+		title = 'title',
+		description = 'description'
+		)
+	embed.set_image(url="https://img.ifunny.co/images/6055223a08899a97145b8c3ea681904782b1ebbf6d1d0ec52fccfa63df607742_1.jpg")
+	await ctx.send(embed = embed)
 
 @client.command()
 async def roast(ctx, member : discord.Member):
@@ -30,7 +40,9 @@ async def roast(ctx, member : discord.Member):
 @client.command()
 async def pp(ctx, member : discord.Member):
 	sz = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-	await ctx.send(f"8{random.choice(sz)*'='}D")
+	msg = discord.Embed(title = f"{member}'s pp\n",
+		description = f"8{random.choice(sz)*'='}D")
+	await ctx.send(embed = msg)
 
 client.run(token) # token
 
