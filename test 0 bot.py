@@ -4,7 +4,7 @@ import random
 from scrapeifunny import get_urls
 
 client = commands.Bot(command_prefix = '.')
-token = "NzU5ODAxNzI0OTE4NjkzOTA5.X3Cyfw.lS3iskNmK_sis46Jift--_lvNGg"
+token = "NzU5ODAxNzI0OTE4NjkzOTA5.X3Cyfw.ZLNYu1qQRW_wm5xbfY2L7hQppB4"
 
 @client.event
 async def on_ready():
@@ -19,9 +19,9 @@ async def clear(ctx, amount = 5):
 	await ctx.channel.purge(limit = amount)
 
 @client.command()
-async def meme(ctx):
+async def meme(ctx, site = "memedroid"):
 	embed = discord.Embed()
-	imgs = get_urls()
+	imgs = get_urls(site)
 	temp = random.choice(imgs)
 	embed.set_image(url= temp)
 	await ctx.send(embed = embed)
