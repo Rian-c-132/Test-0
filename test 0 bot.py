@@ -1,9 +1,10 @@
 import discord
 from discord.ext import commands
 import random
+from scrapeifunny import get_urls
 
 client = commands.Bot(command_prefix = '.')
-token = ""
+token = "NzU5ODAxNzI0OTE4NjkzOTA5.X3Cyfw.lS3iskNmK_sis46Jift--_lvNGg"
 
 @client.event
 async def on_ready():
@@ -18,13 +19,13 @@ async def clear(ctx, amount = 5):
 	await ctx.channel.purge(limit = amount)
 
 @client.command()
-async def displayembed(ctx):
-	embed = discord.Embed(
-		title = 'title',
-		description = 'description'
-		)
-	embed.set_image(url="https://img.ifunny.co/images/6055223a08899a97145b8c3ea681904782b1ebbf6d1d0ec52fccfa63df607742_1.jpg")
+async def meme(ctx):
+	embed = discord.Embed()
+	imgs = get_urls()
+	temp = random.choice(imgs)
+	embed.set_image(url= temp)
 	await ctx.send(embed = embed)
+
 
 @client.command()
 async def roast(ctx, member : discord.Member):
